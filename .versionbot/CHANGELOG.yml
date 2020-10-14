@@ -1,4 +1,19 @@
 - commits:
+    - subject: Add command device purge
+      hash: bd9fb7348d92dec0abf8aba1cfe3786b227cc1e3
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Resolves: '#1547'
+        resolves: '#1547'
+        Signed-off-by: Scott Lowe <scott@balena.io>
+        signed-off-by: Scott Lowe <scott@balena.io>
+      author: Scott Lowe
+      nested: []
+  version: 12.26.0
+  date: 2020-10-14T10:05:44.681Z
+- commits:
     - subject: Treat authorization errors as expected
       hash: 592efd0a2e5c0c46f4cbf0b1107b135ccab55211
       body: ''
