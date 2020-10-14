@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add command app purge
+      hash: 46b21ca96bd519fcd714d230837a68d27a9ebf49
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Scott Lowe <scott@balena.io>
+        signed-off-by: Scott Lowe <scott@balena.io>
+      author: Scott Lowe
+      nested: []
+  version: 12.26.0
+  date: 2020-10-14T10:43:01.356Z
+- commits:
     - subject: Treat authorization errors as expected
       hash: 592efd0a2e5c0c46f4cbf0b1107b135ccab55211
       body: ''
