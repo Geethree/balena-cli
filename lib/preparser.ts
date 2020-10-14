@@ -162,6 +162,7 @@ export const oclifCommandIds = [
 	'device:move',
 	'device:os-update',
 	'device:public-url',
+	`device:purge`,
 	'device:reboot',
 	'device:register',
 	'device:rename',
