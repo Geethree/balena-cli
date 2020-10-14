@@ -174,20 +174,21 @@ Users are encouraged to regularly update balenaCLI to the latest version.
 
 - Device
 
+	- [device &#60;uuid&#62;](#device-uuid)
 	- [device identify &#60;uuid&#62;](#device-identify-uuid)
 	- [device init](#device-init)
-	- [device &#60;uuid&#62;](#device-uuid)
 	- [device move &#60;uuid(s)&#62;](#device-move-uuid-s)
+	- [device os-update &#60;uuid&#62;](#device-os-update-uuid)
+	- [device public-url &#60;uuid&#62;](#device-public-url-uuid)
+	- [](#)
 	- [device reboot &#60;uuid&#62;](#device-reboot-uuid)
 	- [device register &#60;application&#62;](#device-register-application)
 	- [device rename &#60;uuid&#62; [newname]](#device-rename-uuid-newname)
-	- [device rm &#60;uuid(s)&#62;](#device-rm-uuid-s)
 	- [device restart &#60;uuid&#62;](#device-restart-uuid)
+	- [device rm &#60;uuid(s)&#62;](#device-rm-uuid-s)
 	- [device shutdown &#60;uuid&#62;](#device-shutdown-uuid)
 	- [devices](#devices)
 	- [devices supported](#devices-supported)
-	- [device os-update &#60;uuid&#62;](#device-os-update-uuid)
-	- [device public-url &#60;uuid&#62;](#device-public-url-uuid)
 
 - Environment Variables
 
@@ -504,6 +505,22 @@ Examples:
 
 # Device
 
+## device &#60;uuid&#62;
+
+Show information about a single device.
+
+Examples:
+
+	$ balena device 7cf02a6
+
+### Arguments
+
+#### UUID
+
+the device uuid
+
+### Options
+
 ## device identify &#60;uuid&#62;
 
 Identify a device by making the ACT LED blink (Raspberry Pi).
@@ -569,22 +586,6 @@ Check `balena util available-drives` for available options.
 
 path to the config JSON file, see `balena os build-config`
 
-## device &#60;uuid&#62;
-
-Show information about a single device.
-
-Examples:
-
-	$ balena device 7cf02a6
-
-### Arguments
-
-#### UUID
-
-the device uuid
-
-### Options
-
 ## device move &#60;uuid(s)&#62;
 
 Move one or more devices to another application.
@@ -613,6 +614,97 @@ application name
 #### --app APP
 
 same as '--application'
+
+## device os-update &#60;uuid&#62;
+
+Start a Host OS update for a device.
+
+Note this command will ask for confirmation interactively.
+This can be avoided by passing the `--yes` option.
+
+Requires balenaCloud; will not work with openBalena or standalone balenaOS.
+
+Examples:
+
+	$ balena device os-update 23c73a1
+	$ balena device os-update 23c73a1 --version 2.31.0+rev1.prod
+
+### Arguments
+
+#### UUID
+
+the uuid of the device to update
+
+### Options
+
+#### --version VERSION
+
+a balenaOS version
+
+#### -y, --yes
+
+answer "yes" to all questions (non interactive use)
+
+## device public-url &#60;uuid&#62;
+
+This command will output the current public URL for the
+specified device.  It can also enable or disable the URL,
+or output the enabled status, using the respective options.
+
+The old command style 'balena device public-url enable <uuid>'
+is deprecated, but still supported.
+
+Examples:
+
+	$ balena device public-url 23c73a1
+	$ balena device public-url 23c73a1 --enable
+	$ balena device public-url 23c73a1 --disable
+	$ balena device public-url 23c73a1 --status
+
+### Arguments
+
+#### UUID
+
+the uuid of the device to manage
+
+#### LEGACYUUID
+
+
+
+### Options
+
+#### --enable
+
+enable the public URL
+
+#### --disable
+
+disable the public URL
+
+#### --status
+
+determine if public URL is enabled
+
+## 
+
+Purge device data.
+This command clears the user application's /data directory.
+
+Multiple devices may be specified with a comma-separated list
+of values (no spaces).
+
+Examples:
+
+	$ balena device purge 23c73a1
+	$ balena device purge 55d43b3,23c73a1
+
+### Arguments
+
+#### UUID
+
+comma-separated list (no blank spaces) of device UUIDs
+
+### Options
 
 ## device reboot &#60;uuid&#62;
 
@@ -678,31 +770,6 @@ the new name for the device
 
 ### Options
 
-## device rm &#60;uuid(s)&#62;
-
-Remove one or more devices from balena.
-
-Note this command asks for confirmation interactively.
-You can avoid this by passing the `--yes` option.
-
-Examples:
-
-	$ balena device rm 7cf02a6
-	$ balena device rm 7cf02a6,dc39e52
-	$ balena device rm 7cf02a6 --yes
-
-### Arguments
-
-#### UUID
-
-comma-separated list (no blank spaces) of device UUIDs to be removed
-
-### Options
-
-#### -y, --yes
-
-answer "yes" to all questions (non interactive use)
-
 ## device restart &#60;uuid&#62;
 
 Restart containers on a device.
@@ -732,6 +799,31 @@ comma-separated list (no blank spaces) of device UUIDs to restart
 #### -s, --service SERVICE
 
 comma-separated list (no blank spaces) of service names to restart
+
+## device rm &#60;uuid(s)&#62;
+
+Remove one or more devices from balena.
+
+Note this command asks for confirmation interactively.
+You can avoid this by passing the `--yes` option.
+
+Examples:
+
+	$ balena device rm 7cf02a6
+	$ balena device rm 7cf02a6,dc39e52
+	$ balena device rm 7cf02a6 --yes
+
+### Arguments
+
+#### UUID
+
+comma-separated list (no blank spaces) of device UUIDs to be removed
+
+### Options
+
+#### -y, --yes
+
+answer "yes" to all questions (non interactive use)
 
 ## device shutdown &#60;uuid&#62;
 
@@ -819,76 +911,6 @@ produce JSON output instead of tabular output
 #### -v, --verbose
 
 add extra columns in the tabular output (ALIASES, ARCH, STATE)
-
-## device os-update &#60;uuid&#62;
-
-Start a Host OS update for a device.
-
-Note this command will ask for confirmation interactively.
-This can be avoided by passing the `--yes` option.
-
-Requires balenaCloud; will not work with openBalena or standalone balenaOS.
-
-Examples:
-
-	$ balena device os-update 23c73a1
-	$ balena device os-update 23c73a1 --version 2.31.0+rev1.prod
-
-### Arguments
-
-#### UUID
-
-the uuid of the device to update
-
-### Options
-
-#### --version VERSION
-
-a balenaOS version
-
-#### -y, --yes
-
-answer "yes" to all questions (non interactive use)
-
-## device public-url &#60;uuid&#62;
-
-This command will output the current public URL for the
-specified device.  It can also enable or disable the URL,
-or output the enabled status, using the respective options.
-
-The old command style 'balena device public-url enable <uuid>'
-is deprecated, but still supported.
-
-Examples:
-
-	$ balena device public-url 23c73a1
-	$ balena device public-url 23c73a1 --enable
-	$ balena device public-url 23c73a1 --disable
-	$ balena device public-url 23c73a1 --status
-
-### Arguments
-
-#### UUID
-
-the uuid of the device to manage
-
-#### LEGACYUUID
-
-
-
-### Options
-
-#### --enable
-
-enable the public URL
-
-#### --disable
-
-disable the public URL
-
-#### --status
-
-determine if public URL is enabled
 
 # Environment Variables
 
