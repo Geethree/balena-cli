@@ -1,4 +1,17 @@
 - commits:
+    - subject: Remove need for hardcoded list of command ids
+      hash: 2981b2832ea066331a3a90137fce97c04d3e2c0f
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Scott Lowe <scott@balena.io>
+        signed-off-by: Scott Lowe <scott@balena.io>
+      author: Scott Lowe
+      nested: []
+  version: 12.25.5
+  date: 2020-10-26T08:34:45.978Z
+- commits:
     - subject: Update Contributing document re commit messages / versionbot / changelog
       hash: 077e25ebc4e1b3f1cf5aefefcc8601f9dbe38d1f
       body: ''
